@@ -5,7 +5,7 @@
 
 
 
-<form action="{{ url('/admin/categories/create') }}" method="POST" enctype="multipart/form-data">
+<form action="{{ url('/admin/categories/store') }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     <table border="0" cellpadding="10" style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">

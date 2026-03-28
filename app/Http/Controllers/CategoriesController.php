@@ -13,7 +13,7 @@ class CategoriesController extends Controller
         $categories = Categories::get();
         return view('/admin/categories', compact('categories'));
     }
-    function createCategory(Request $request)
+    function store(Request $request)
     {
 
         $imagePath = null;

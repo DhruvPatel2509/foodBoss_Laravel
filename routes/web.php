@@ -2,20 +2,12 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
+// --- Public & Auth ---
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-});
-
-Route::get('/admin/categories', [CategoriesController::class, 'allCategories']);
-
-Route::get('/admin/categories/create', function () {
-    return view('admin.createCategories');
 });
 
 Route::get('/login', function () {
@@ -24,7 +16,38 @@ Route::get('/login', function () {
 
 Route::post('/loginProcess', [AuthController::class, 'loginProcess']);
 
-Route::post('/admin/categories/create', [CategoriesController::class, 'createCategory']);
-Route::get('/admin/categories/delete/{id}', [CategoriesController::class, 'deleteCategory']);
+
+// --- Admin Dashboard ---
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+});
+
+
+// --- Categories Management ---
+Route::get('/admin/categories', [CategoriesController::class, 'allCategories']);
+
+Route::get('/admin/categories/create', function () {
+    return view('admin.createCategories');
+});
+
+Route::post('/admin/categories/store', [CategoriesController::class, 'store']);
+
 Route::get('/admin/categories/edit/{id}', [CategoriesController::class, 'editCategory']);
+
 Route::post('/admin/categories/updateCat/{id}', [CategoriesController::class, 'updateCategory']);
+
+Route::get('/admin/categories/delete/{id}', [CategoriesController::class, 'deleteCategory']);
+
+
+// --- Products Management ---
+Route::get('/admin/products', [ProductsController::class, 'allProducts']);
+
+Route::get('/admin/products/create', [ProductsController::class, 'create']);
+
+Route::post('/admin/products/store', [ProductsController::class, 'store']);
+
+Route::get('/admin/products/delete/{id}', [ProductsController::class, 'deleteProduct']);
+
+Route::get('/admin/products/edit/{id}', [ProductsController::class, 'editProduct']);
+
+Route::post('/admin/products/update/{id}', [ProductsController::class, 'updateProduct']);

@@ -8,7 +8,9 @@
 </head>
 
 <body>
-    Welcome Page
+    <h1> Welcome Page</h1>
+
+    <h2><a href="/login">Login</a></h2>
 </body>
 
 </html>
