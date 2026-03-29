@@ -1,5 +1,8 @@
 <h1>Categories Page</h1>
 
+
+<a href="{{ url('/admin/dashboard') }}">HOME</a>
+
 <a href="{{ url('/admin/categories/create') }}">
     <button style="background: green; color: white; padding: 10px;cursor:pointer;">+ ADD NEW</button>
 </a>
