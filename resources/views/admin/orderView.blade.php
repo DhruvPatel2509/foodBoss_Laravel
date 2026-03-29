@@ -1,7 +1,7 @@
 <div style="background: #fff; padding: 20px; border: 1px solid #ddd; border-radius: 8px; margin-bottom: 20px;">
     <h2>Order #{{ $order->id }} Details</h2>
     <p><strong>Customer:</strong> {{ $order->user->name }} ({{ $order->user->email }})</p>
-<p><strong>Date:</strong> {{ $order->created_at ? $order->created_at->diffForHumans() : 'Date not available' }}</p>
+<p><strong>Date:</strong> {{ $order->created_at ? $order->created_at->diffForHumans() : 'Date not available' }}</p> 
     <p><strong>Status:</strong>
         <span style="color: {{ $order->status == 'delivered' ? 'green' : 'orange' }}; font-weight: bold;">
             {{ ucfirst($order->status) }}

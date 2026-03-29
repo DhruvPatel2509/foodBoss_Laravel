@@ -57,4 +57,6 @@ Route::post('/admin/products/update/{id}', [ProductsController::class, 'updatePr
 
 Route::get('/admin/orders', [OrdersController::class, 'allOrders']);
 
-Route::get('/admin/viewOrder{id}', [OrdersController::class, 'viewOrder']);
+Route::get('/admin/viewOrder/{id}', [OrdersController::class, 'viewOrder']);
+
+Route::post('/admin/orders/update-status/{id}', [OrdersController::class, 'updateStatus']);

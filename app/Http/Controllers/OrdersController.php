@@ -19,4 +19,13 @@ class OrdersController extends Controller
         $order = Orders::with(['items.product', 'user'])->find($id);
         return view('admin.orderView', compact('order'));
     }
+
+    public function updateStatus(Request $req, $id)
+    {
+        $order = Orders::find($id);
+        $order->status = $req->status;
+        $order->save();
+
+        return redirect('/admin/orders')->with('success', 'Order status updated!');
+    }
 }

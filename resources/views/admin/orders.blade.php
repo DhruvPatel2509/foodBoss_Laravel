@@ -18,14 +18,21 @@
             <td>{{ $order->user->name ?? 'Guest' }}</td>
             <td>₹{{ $order->total_amount }}</td>
             <td>
-                <span
-                    style="padding: 5px; background: {{ $order->status == 'pending' ? 'orange' : 'green' }}; color: white;">
-                    {{ ucfirst($order->status) }}
+                <span style="padding: 5px 10px; 
+                            border-radius: 4px; 
+                            text-transform: capitalize; 
+                            color: white; 
+                            background: {{ 
+                                $order->status == 'pending' ? 'orange' :
+            ($order->status == 'cancelled' ? 'red' :
+                ($order->status == 'delivered' ? 'green' : 'blue')) 
+                            }};">
+                    {{ $order->status }}
                 </span>
             </td>
             <td>{{ $order->created_at ? $order->created_at->format('d M Y') : 'NA' }}</td>
             <td>
-                <a href="{{ url('/admin/viewOrder' . $order->id) }}">View Details</a>
+                <a href="{{ url('/admin/viewOrder/' . $order->id) }}">View Details</a>
             </td>
         </tr>
     @endforeach
