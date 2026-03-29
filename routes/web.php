@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\ProductsController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,3 +52,9 @@ Route::get('/admin/products/delete/{id}', [ProductsController::class, 'deletePro
 Route::get('/admin/products/edit/{id}', [ProductsController::class, 'editProduct']);
 
 Route::post('/admin/products/update/{id}', [ProductsController::class, 'updateProduct']);
+
+// --- Orders Management ---
+
+Route::get('/admin/orders', [OrdersController::class, 'allOrders']);
+
+Route::get('/admin/viewOrder{id}', [OrdersController::class, 'viewOrder']);
