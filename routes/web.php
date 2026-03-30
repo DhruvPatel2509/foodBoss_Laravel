@@ -15,6 +15,8 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::get('/logout', [AuthController::class, 'logout']);
+
 Route::post('/loginProcess', [AuthController::class, 'loginProcess']);
 
 
@@ -60,3 +62,4 @@ Route::get('/admin/orders', [OrdersController::class, 'allOrders']);
 Route::get('/admin/viewOrder/{id}', [OrdersController::class, 'viewOrder']);
 
 Route::post('/admin/orders/update-status/{id}', [OrdersController::class, 'updateStatus']);
+
