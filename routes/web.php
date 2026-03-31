@@ -15,7 +15,13 @@ Route::get('/login', function () {
     return view('auth.login');
 });
 
+Route::get('/signup', function () {
+    return view('auth.signup');
+});
+
 Route::post('/loginProcess', [AuthController::class, 'loginProcess']);
+
+Route::post('/signupProcess', [AuthController::class, 'signupProcess']);
 
 
 // --- Admin Dashboard ---

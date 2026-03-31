@@ -62,6 +62,24 @@ class AuthController extends Controller
         return redirect('/admin/users')->with('success', 'User updated successfully!');
     }
 
+    public function signupProcess(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6',
+        ]);
+
+        User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+            'role' => 'user',
+        ]);
+
+        return redirect('/login')->with('success', 'Registration successful! Please login.');
+    }
+
     function allUsers()
     {
         $users = User::get();

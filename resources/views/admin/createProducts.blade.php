@@ -19,7 +19,17 @@
         </tr>
         <tr>
             <td><strong>Price (₹):</strong></td>
-            <td><input type="number" name="price" step="0.01" required style="width: 300px; padding: 8px;"></td>
+            <td><input type="number" name="price" value="{{ $user->price ?? '' }}" required
+                    style="width: 300px; padding: 8px;">
+            </td>
+        </tr>
+        <tr>
+            <td><strong>Discount Percentage (%):</strong></td>
+            <td>
+                <input type="number" name="discount_percent" value="{{ $product->discount_percent ?? 0 }}" min="0"
+                    max="100" style="width: 300px; padding: 8px;">
+                <br><small style="color: gray;">Set to 0 if no discount. Example: 10 for 10% off.</small>
+            </td>
         </tr>
         <tr>
             <td><strong>Description:</strong></td>

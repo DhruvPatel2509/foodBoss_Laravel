@@ -1,10 +1,8 @@
 <h1>Edit Product</h1>
 <a href="{{ url('/admin/products') }}">Back to List</a>
 <hr>
-@if ($product->id)
-    $id = $product->id;
-@endif
-<form action="{{ url('/admin/user/update/' . $id) }}" method="POST" enctype="multipart/form-data">
+
+<form action="{{ url('/admin/products/update/' . $product->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <table border="0" cellpadding="10" style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
         <tr>
@@ -29,10 +27,11 @@
         </tr>
 
         <tr>
-            <td><strong>Description:</strong></td>
+            <td><strong>Discount Percentage (%):</strong></td>
             <td>
-                <textarea name="description"
-                    style="width: 300px; height: 80px; padding: 8px;">{{ $product->description }}</textarea>
+                <input type="number" name="discount_percent" value="{{ $product->discount_percent ?? 0 }}" min="0"
+                    max="100" required style="width: 300px; padding: 8px;">
+                <br><small style="color: gray;">Enter 0 for no discount. Example: 10 for 10% off.</small>
             </td>
         </tr>
 
@@ -48,7 +47,8 @@
             <td><strong>Current Image:</strong></td>
             <td>
                 @if($product->image)
-                    <img src="{{ asset($product->image) }}" width="100" style="display: block; margin-bottom: 10px;">
+                    <img src="{{ asset($product->image) }}" width="100"
+                        style="display: block; margin-bottom: 10px; border-radius: 5px;">
                 @endif
                 <input type="file" name="image" accept="image/*">
                 <br><small style="color: gray;">Leave blank to keep current image</small>

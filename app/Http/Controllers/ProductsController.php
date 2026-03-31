@@ -39,6 +39,7 @@ class ProductsController extends Controller
             'price' => $request->price,
             'image' => $imagePath,
             'availability' => $request->availability,
+            'discount_percent' => $request->discount_percent ?? 0,
         ]);
         return redirect('/admin/products')->with('success', 'Product Added!');
     }
@@ -68,15 +69,21 @@ class ProductsController extends Controller
         return view('admin.editProduct', compact('product', 'categories'));
     }
 
-    function updateProduct(Request $request, $id)
+    public function updateProduct(Request $request, $id)
     {
         $product = Products::find($id);
+
+        if (!$product) {
+            return redirect('/admin/products')->with('error', 'Product not found!');
+        }
 
         $product->category_id = $request->category_id;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->price = $request->price;
         $product->availability = $request->availability;
+
+        $product->discount_percent = $request->discount_percent ?? 0;
 
         if ($request->hasFile('image')) {
             if ($product->image && file_exists(public_path($product->image))) {
@@ -88,6 +95,7 @@ class ProductsController extends Controller
             $product->image = 'uploads/products/' . $imageName;
         }
 
+        // 4. Save and Redirect
         $product->save();
 
         return redirect('/admin/products')->with('success', 'Product updated successfully!');
