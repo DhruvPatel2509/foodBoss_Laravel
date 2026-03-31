@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Auth;
 
@@ -23,5 +24,48 @@ class AuthController extends Controller
 
 
         return view('auth.login');
+    }
+
+    // public function deleteUser($id)
+    // {
+    //     if (auth()->id() == $id) {
+    //         return redirect()->back()->with('error', 'You cannot delete your own admin account!');
+    //     }
+
+    //     $user = User::find($id);
+
+    //     if ($user) {
+    //         $user->delete();
+    //         return redirect('/admin/users')->with('success', 'User deleted successfully.');
+    //     }
+
+    //     return redirect('/admin/users')->with('error', 'User not found.');
+    // }
+
+    public function editUser($id)
+    {
+        $user = User::find($id);
+
+        return view('admin.userEdit', compact('user'));
+    }
+
+    public function updateUser(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->role = $request->role;
+
+        $user->save();
+
+        return redirect('/admin/users')->with('success', 'User updated successfully!');
+    }
+
+    function allUsers()
+    {
+        $users = User::get();
+
+        return view('admin.users', compact('users'));
     }
 }

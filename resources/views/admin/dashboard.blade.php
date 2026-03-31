@@ -12,3 +12,7 @@
 <h2>
     <a href="{{ url('/admin/orders') }}">Orders</a>
 </h2>
+
+<h2>
+    <a href="{{ url('/admin/users') }}">Users</a>
+</h2>

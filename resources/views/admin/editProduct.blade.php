@@ -1,8 +1,10 @@
 <h1>Edit Product</h1>
 <a href="{{ url('/admin/products') }}">Back to List</a>
 <hr>
-
-<form action="{{ url('/admin/products/update/' . $product->id) }}" method="POST" enctype="multipart/form-data">
+@if ($product->id)
+    $id = $product->id;
+@endif
+<form action="{{ url('/admin/user/update/' . $id) }}" method="POST" enctype="multipart/form-data">
     @csrf
     <table border="0" cellpadding="10" style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px;">
         <tr>

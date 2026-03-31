@@ -60,3 +60,13 @@ Route::get('/admin/orders', [OrdersController::class, 'allOrders']);
 Route::get('/admin/viewOrder/{id}', [OrdersController::class, 'viewOrder']);
 
 Route::post('/admin/orders/update-status/{id}', [OrdersController::class, 'updateStatus']);
+
+// --- Users Management ---
+
+Route::get('/admin/users', [AuthController::class, 'allUsers']);
+
+Route::get('/admin/deleteUser/{id}', [AuthController::class, 'deleteUser']);
+
+Route::get('/admin/userEdit/{id}', [AuthController::class, 'editUser']);
+
+Route::post('/admin/user/update/{id}', [AuthController::class, 'updateUser']);
